@@ -1,0 +1,84 @@
+<div class="card border-success mt-4">
+  <h3 class="card-header bg-success">Child Component</h3>
+  <div class="card-body">
+    <h4 class="card-title">Student Create</h4>
+
+    <!--    <div class="form-group">-->
+    <!--      <label>Name:</label>-->
+    <!--      <input type="text" class="form-control" #name>-->
+    <!--    </div>-->
+
+    <!--    <div class="form-group">-->
+    <!--      <label>Gender:</label>-->
+    <!--      <br>-->
+    <!--      <input type="radio" value="0" name="gender" #gender1> Female-->
+    <!--      <input type="radio" value="1" name="gender" #gender2> Male-->
+    <!--      <input type="radio" value="2" name="gender" #gender3> LGBT-->
+    <!--    </div>-->
+
+    <!--    <div class="form-group">-->
+    <!--      <label>Point:</label>-->
+    <!--      <input type="number" class="form-control" #point>-->
+    <!--    </div>-->
+
+    <!--    <button type="button" class="btn bg-primary"-->
+    <!--            (click)="createStudent(name.value,-->
+    <!--            gender1.checked ? gender1.value : gender2.checked ? gender2.value : gender3.checked ? gender3.value:'',-->
+    <!--            point.value)">Create</button>-->
+
+
+    <!--    Tạo student với template driven form-->
+    <!--    <form #registerForm="ngForm" (ngSubmit)="createStudentTemplateDrivenForm(registerForm)">-->
+    <!--      <div class="form-group">-->
+    <!--        <label>Name:</label>-->
+    <!--        <input type="text" ngModel class="form-control" name="name" required>-->
+    <!--      </div>-->
+
+    <!--      <div class="form-group">-->
+    <!--        <label>Gender:</label>-->
+    <!--        <br>-->
+    <!--        <input type="radio" ngModel value="0" name="gender"> Female-->
+    <!--        <input type="radio" ngModel value="1" name="gender"> Male-->
+    <!--        <input type="radio" ngModel value="2" name="gender"> LGBT-->
+    <!--      </div>-->
+    <!--      <div class="form-group">-->
+    <!--        <label>Point:</label>-->
+    <!--        <input type="number" ngModel class="form-control" name="point">-->
+    <!--      </div>-->
+    <!--          <button type="submit" class="btn bg-primary">Create</button>-->
+    <!--    </form>-->
+
+    <!--    Tạo student với Reactive form-->
+    <form [formGroup]="studentForm" (ngSubmit)="createStudentReactiveForms()">
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" formControlName="name" class="form-control">
+      </div>
+      <div style="color: red" *ngIf="studentForm.controls.name.hasError('minlength') &&
+studentForm.controls.name.dirty">Số lượng kí tự của tên phải lớn hơn 4
+
+      </div>
+      <div *ngIf="studentForm.controls.name.hasError('required') &&
+studentForm.controls.name.dirty">Tên không được để trống
+
+      </div>
+
+      <div class="form-group">
+        <label>Gender:</label>
+        <br>
+        <input type="radio" formControlName="gender" value="0"> Female
+        <input type="radio" formControlName="gender" value="1"> Male
+        <input type="radio" formControlName="gender" value="2"> LGBT
+      </div>
+      <div class="form-group">
+        <label>Point:</label>
+        <input type="number" formControlName="point" class="form-control">
+        <div style="color: red" *ngIf="studentForm.controls.point.hasError('invalid') &&
+studentForm.controls.point.dirty">Point không được lớn hơn 10 và nhỏ hơn 0
+
+        </div>
+      </div>
+      <button type="submit" class="btn bg-primary" *ngIf="studentForm.valid">Create</button>
+    </form>
+  </div>
+</div>
