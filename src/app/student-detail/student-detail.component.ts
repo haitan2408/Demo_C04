@@ -16,7 +16,10 @@ export class StudentDetailComponent implements OnInit {
     activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const name = paramMap.get("name"); //name phải trùng với từ khóa khai báo bên app-routing
       console.log(name);
-      this.studentDetail = studentService.findByName(name);
+      studentService.findByName(name).subscribe(next => {
+        console.log(next)
+        this.studentDetail = next[0];
+      });
     })
   }
 

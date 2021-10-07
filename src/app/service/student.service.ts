@@ -1,39 +1,28 @@
 import {Injectable} from '@angular/core';
 import {Student} from "../../models/Student";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 //@Service trong Spring
 @Injectable({
   providedIn: 'root' //phmj vi sử dụng bean
 })
 export class StudentService {
-  students: Student[];
+  private api_url_student = "http://localhost:3000/students";
 
-  constructor() {
-    this.students = [
-      {name: "Nguyen Van A", gender: 0, point: 100},
-      {name: "Nguyen Van B", gender: 1, point: 0},
-      {name: "VIP", gender: 1, point: 0},
-      {name: "Nguyen Van C", gender: 2, point: 80},
-      {name: "Nguyen Van D", gender: 1, point: 50},
-    ]
+  constructor(private httpClient: HttpClient) {
   }
 
-  findAll() {
-    return this.students;
+  findAll() :Observable<Student[]|any> {
+    return this.httpClient.get(this.api_url_student);
+}
+
+  createStudent(student: Student):Observable<any> {
+    return this.httpClient.post(this.api_url_student, student);
   }
 
-  createStudent(student: Student) {
-    this.students.unshift(student);
-  }
-
-  findByName(name: String | null): Student | null {
+  findByName(name: String | null): Observable<Student|any> {
     //lambda;
-    // this.students.find(item => item.name == name)
-    for (let student of this.students) {
-      if (student.name == name) {
-        return student;
-      }
-    }
-    return null;
+   return this.httpClient.get(this.api_url_student +"?name="+name);
   }
 }

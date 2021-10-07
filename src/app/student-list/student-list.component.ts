@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Student} from "../../models/Student";
 import {StudentService} from "../service/student.service";
 import {Router} from "@angular/router";
+import {pipe} from "rxjs";
 
 @Component({
   selector: 'app-student-list',
@@ -10,11 +11,23 @@ import {Router} from "@angular/router";
 })
 export class StudentListComponent implements OnInit {
 
-  students: Student[];
+  students: Student[]|any;
   studentParent: Student | undefined;
 
   constructor(private studentService: StudentService, private router: Router) {
-    this.students = this.studentService.findAll();
+    this.studentService.findAll().subscribe(next=> {
+       this.students = next;
+      console.log(this.students)
+    }, error => {
+
+    }, () => {
+
+    });
+    console.log(this.students)
+
+    // this.studentService.findAll().toPromise().then(data => {
+    //   this.students = data;
+    // })
   }
 
 

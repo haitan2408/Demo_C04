@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {RouterModule} from "@angular/router";
 import { StudentListComponent } from './student-list/student-list.component';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { StudentListComponent } from './student-list/student-list.component';
     ReactiveFormsModule,
     AppRoutingModule,
     RouterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

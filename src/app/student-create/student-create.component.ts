@@ -36,8 +36,8 @@ export class StudentCreateComponent implements OnInit {
 
   createStudent(name: string, gender: string, point: string) {
     //gán giá trị cho object student
-    this.student = {name: name, gender: parseInt(gender), point: parseInt(point)};
-    console.log(this.student);
+    // this.student = {name: name, gender: parseInt(gender), point: parseInt(point)};
+    // console.log(this.student);
   }
 
   createStudentTemplateDrivenForm(registerForm: NgForm) {
@@ -52,8 +52,10 @@ export class StudentCreateComponent implements OnInit {
     //valid : true nếu validate đúng. flase nếu validate còn có lỗi
     //invalid: true nếu validate còn có lỗi. false nếu validate đúng
     if(this.studentForm.valid) {
-     this.studentService.createStudent(this.studentForm.value);
-     this.router.navigateByUrl("/student")
+     this.studentService.createStudent(this.studentForm.value).subscribe(next => {
+       this.router.navigateByUrl("/student")
+     });
+
     }
 
   }
