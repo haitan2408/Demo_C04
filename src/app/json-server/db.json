@@ -29,6 +29,12 @@
       "gender": "0",
       "point": 10,
       "id": 4
+    },
+    {
+      "name": "haiTT",
+      "gender": "0",
+      "point": 9,
+      "id": 5
     }
   ]
 }

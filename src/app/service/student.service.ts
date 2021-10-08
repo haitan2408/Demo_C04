@@ -1,12 +1,10 @@
-import {Injectable} from '@angular/core';
+import {Component, Injectable} from '@angular/core';
 import {Student} from "../../models/Student";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
 //@Service trong Spring
-@Injectable({
-  providedIn: 'root' //phmj vi sử dụng bean
-})
+@Injectable()
 export class StudentService {
   private api_url_student = "http://localhost:3000/students";
 

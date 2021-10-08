@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Student} from "../../models/Student";
-import {StudentService} from "../service/student.service";
+import {Student} from "../../../../models/Student";
+import {StudentService} from "../../../service/student.service";
 import {Router} from "@angular/router";
 import {pipe} from "rxjs";
+import {StudentDetailComponent} from "../student-detail/student-detail.component";
 
 @Component({
   selector: 'app-student-list',

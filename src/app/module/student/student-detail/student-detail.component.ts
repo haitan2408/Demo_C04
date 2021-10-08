@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Student} from "../../models/Student";
+import {Student} from "../../../../models/Student";
 import {ActivatedRoute, ParamMap} from "@angular/router";
-import {StudentService} from "../service/student.service";
+import {StudentService} from "../../../service/student.service";
 
 @Component({
   selector: 'app-student-detail',
@@ -16,7 +16,7 @@ export class StudentDetailComponent implements OnInit {
     activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const name = paramMap.get("name"); //name phải trùng với từ khóa khai báo bên app-routing
       console.log(name);
-      studentService.findByName(name).subscribe(next => {
+      studentService.findByName(name).subscribe((next: Student[]) => {
         console.log(next)
         this.studentDetail = next[0];
       });
